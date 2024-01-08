@@ -5,17 +5,23 @@
 require_once '.config.php';
 require_once './inc/Logging.php';
 
-// CSP data
-$data = file_get_contents("php://input");
+// CSP json
+$json = file_get_contents("php://input");
+if (empty($json)) {
+	die('{}');
+}
+$data = json_decode($json, true);
 if (empty($data)) {
 	die('{}');
 }
-$report = json_decode($data, true);
-if (empty($report)) {
+$reportsLog = new Logging('.reports/', 'report.js');
+$reportsLog->append($json);
+
+if (empty($data['csp-report'])) {
 	die('{}');
+	error_log('[ERROR] invalid CSP report, missing expected, main property.');
 }
-$reportsLog = new Logging('.reports/');
-$reportsLog->append($data);
+$report = $data['csp-report'];
 
 // connect
 $pdo = new PDO("pgsql:host={$config['host']};port={$config['port']};dbname={$config['dbname']}", $config['user'], $config['password']);

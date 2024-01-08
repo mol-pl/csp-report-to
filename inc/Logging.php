@@ -5,10 +5,12 @@
 class Logging
 {
 	private $directoryPath;
+	private $file;
 
-	public function __construct($directoryPath)
+	public function __construct($directoryPath, $file = 'report.log')
 	{
 		$this->directoryPath = rtrim($directoryPath, '/') . '/';
+		$this->file = preg_replace('#[\/\.]#', '_', $file);
 	}
 
 	/** Report JSON (raw). */
@@ -24,7 +26,7 @@ class Logging
 		}
 
 		// Append the raw data to the file
-		$filePath = "{$fullDirectoryPath}report.log";
+		$filePath = "{$fullDirectoryPath}{$this->file}";
 		file_put_contents($filePath, "\n".$data, FILE_APPEND);
 	}
 }

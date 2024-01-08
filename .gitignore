@@ -1,2 +1,5 @@
 .config.php
 *.lnk
+*.priv.*
+.priv.*
+/.reports
