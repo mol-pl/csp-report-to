@@ -2,7 +2,7 @@
 /**
  * Receive report from CSP rules.
  */
-require_once 'config.php';
+require_once '.config.php';
 
 // CSP data
 $data = file_get_contents("php://input");
