@@ -3,10 +3,19 @@
  * Receive report from CSP rules.
  */
 require_once '.config.php';
+require_once './inc/Logging.php';
 
 // CSP data
 $data = file_get_contents("php://input");
+if (empty($data)) {
+	die('{}');
+}
 $report = json_decode($data, true);
+if (empty($report)) {
+	die('{}');
+}
+$reportsLog = new Logging('.reports/');
+$reportsLog->append($data);
 
 // connect
 $pdo = new PDO("pgsql:host={$config['host']};port={$config['port']};dbname={$config['dbname']}", $config['user'], $config['password']);
