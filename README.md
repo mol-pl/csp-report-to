@@ -34,6 +34,15 @@ Content Security Policy (CSP) is a web security standard that helps prevent vari
 
 ## Configuration
 
+### PHP conf
+
+PHP7+ should work fine. You'll just need to enable PDO for Postgres:
+```
+extension=pdo_pgsql
+```
+
+### This script
+
 Modify the `.config.php` file to set up your PostgreSQL database connection details:
 
 ```php
