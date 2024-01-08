@@ -10,7 +10,7 @@ class Logging
 	public function __construct($directoryPath, $file = 'report.log')
 	{
 		$this->directoryPath = rtrim($directoryPath, '/') . '/';
-		$this->file = preg_replace('#[\/\.]#', '_', $file);
+		$this->file = preg_replace('#([\/]+|\\.{2,})#', '_', $file);
 	}
 
 	/** Report JSON (raw). */

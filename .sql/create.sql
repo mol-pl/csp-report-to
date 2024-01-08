@@ -7,8 +7,10 @@ CREATE DATABASE stats_csp;
 */
 
 -- Tworzenie tabeli do przechowywania raportów CSP
+-- DROP TABLE IF EXISTS csp_reports;
 CREATE TABLE IF NOT EXISTS csp_reports (
     id SERIAL PRIMARY KEY,
+	created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     blocked_uri VARCHAR(255),
     disposition VARCHAR(50),
     document_uri VARCHAR(255),
