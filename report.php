@@ -38,6 +38,8 @@ $report = $data['csp-report'];
 
 // connect
 $pdo = new PDO("pgsql:host={$config['host']};port={$config['port']};dbname={$config['dbname']}", $config['user'], $config['password']);
+// disable throwing exceptions
+$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_SILENT);	
 
 // query
 $sql = "INSERT INTO csp_reports (blocked_uri, disposition, document_uri, effective_directive, original_policy, referrer, status_code, violated_directive)
