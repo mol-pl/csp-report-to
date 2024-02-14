@@ -13,7 +13,7 @@ Content Security Policy (CSP) is a web security standard that helps prevent vari
    ```
 
 2. **Configure Database:**
-   - Create a PostgreSQL database.
+   - Create a PostgreSQL database (use steps in the `.sql/` directory).
    - Update the `.config.php` file with your database connection details.
 
 3. **Run the Application:**
